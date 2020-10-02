@@ -1,8 +1,5 @@
 import time
 import serial
-import datetime
-import re
-import requests
 
 phone = serial.Serial("/dev/ttyAMA0", 115200, timeout=1)
 
