@@ -11,7 +11,7 @@ try:
     print(phone.readall())
 
     while 1:
-        phone.write(b'AT+CMGL="ALL"\r')
+        phone.write(b'AT+CMGL="ALL"\r')  # read all stored messages
         data = phone.readall()
         print(data)
         time.sleep(5)
