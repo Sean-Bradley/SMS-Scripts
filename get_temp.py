@@ -4,7 +4,8 @@ import subprocess
 from curses import ascii
 
 # An example script that shows how to receive an SMS message containing 'get_temp' and
-# then respond by sending an SMS message back to the requesting number
+# then respond by sending an SMS message back to the requesting number containing
+# the temperature of my Raspberry Pi
 
 phone = serial.Serial("/dev/ttyAMA0", 115200, timeout=1)
 # phone.write(ascii.ctrl('z'))
@@ -38,7 +39,7 @@ try:
                         num = parts[2]
                         #print("num=" + num)
                     # validate the requestors mobile number
-                    elif len(parts) == 1 and num == "+senders_mobile_no":
+                    elif len(parts) == 1 and num == "+REPLACE_WITH_VALID_REQUESTOR_MOBILE_NUMBER":
                         if parts[0] == "get_temp":
                             print("received get_temp command at CMGL " + cmglID)
 
@@ -63,6 +64,7 @@ try:
                             # delete the message so that it doesn't get reprocessed
                             phone.write(b"AT+CMGD=" + cmglID + "\r")
                             print(phone.readall())
+                            time.sleep(5)
 
         time.sleep(5)
 
